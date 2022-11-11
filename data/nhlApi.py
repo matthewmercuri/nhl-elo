@@ -11,7 +11,23 @@ CURRENT_SEASON_STR: str = "20222023"
 
 
 def _clean_daily_game_data_list(daily_game_data_list: list[dict]) -> list[dict]:
-    return daily_game_data_list
+    cleaned_game_data_list: list[dict] = []
+    for day_data_dict in daily_game_data_list:
+        for game_data in day_data_dict["games"]:
+            cleaned_game_data_list.append(
+                {
+                    "gameType": game_data["gameType"],
+                    "season": game_data["season"],
+                    "gameDate": game_data["gameDate"],
+                    "gameStatus": game_data["status"]["detailedState"],
+                    "homeTeam": game_data["teams"]["home"]["team"]["name"],
+                    "awayTeam": game_data["teams"]["away"]["team"]["name"],
+                    "homeScore": game_data["teams"]["home"]["score"],
+                    "awayScore": game_data["teams"]["away"]["score"],
+                }
+            )
+
+    return cleaned_game_data_list
 
 
 def get_regular_season_games() -> list[dict]:
@@ -22,4 +38,4 @@ def get_regular_season_games() -> list[dict]:
     return _clean_daily_game_data_list(daily_game_data_list)
 
 
-get_regular_season_games()
+print(get_regular_season_games())
