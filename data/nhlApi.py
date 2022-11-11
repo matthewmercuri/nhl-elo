@@ -36,6 +36,3 @@ def get_seasons_games(season_string: str = CURRENT_SEASON_STR) -> list[dict]:
     daily_game_data_list: list[dict] = r.json()["dates"]
 
     return _clean_daily_game_data_list(daily_game_data_list)
-
-
-print(get_seasons_games())
