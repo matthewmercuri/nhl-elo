@@ -30,12 +30,12 @@ def _clean_daily_game_data_list(daily_game_data_list: list[dict]) -> list[dict]:
     return cleaned_game_data_list
 
 
-def get_regular_season_games() -> list[dict]:
-    params = {"season": CURRENT_SEASON_STR}
+def get_seasons_games(season_string: str = CURRENT_SEASON_STR) -> list[dict]:
+    params = {"season": season_string}
     r = requests.get(SCHDULE_API_URL, params)
     daily_game_data_list: list[dict] = r.json()["dates"]
 
     return _clean_daily_game_data_list(daily_game_data_list)
 
 
-print(get_regular_season_games())
+print(get_seasons_games())
