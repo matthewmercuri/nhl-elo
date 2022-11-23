@@ -40,4 +40,6 @@ def get_seasons_games(season_string: str = CURRENT_SEASON_STR) -> list[dict]:
 
 
 def get_team_names() -> list:
-    return []
+    r = requests.get(TEAMS_API_URL)
+    team_data = r.json()["teams"]
+    return list(map(lambda team: team["name"], team_data))

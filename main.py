@@ -1,3 +1,3 @@
-from data.data import create_games_df
+from data.data import create_games_df, create_teams_df
 
-print(create_games_df().head())
+create_teams_df()
