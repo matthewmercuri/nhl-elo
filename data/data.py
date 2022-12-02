@@ -7,5 +7,5 @@ def create_games_df() -> pd.DataFrame:
     return pd.DataFrame(seasons_games_list)
 
 
-def create_teams_df():
-    print(get_team_names())
+def create_teams_list() -> list:
+    return get_team_names()
