@@ -13,12 +13,6 @@ def get_b2b_advantage(home_b2b: bool, away_b2b: bool) -> str | None:
     return None
 
 
-def get_updated_elos(
-    prev_home_team_elo: float, prev_away_team_elo: float, home_b2b: bool, away_b2b: bool
-):
-    return
-
-
 def get_win_probabilities(
     home_team_elo: float, away_team_elo: float, home_b2b: bool, away_b2b: bool
 ) -> tuple[float, float]:
@@ -39,3 +33,9 @@ def get_win_probabilities(
         home_win_probability = 1 - away_win_probability
 
     return home_win_probability, away_win_probability
+
+
+def get_updated_elos(
+    prev_home_team_elo: float, prev_away_team_elo: float, home_b2b: bool, away_b2b: bool
+):
+    return
