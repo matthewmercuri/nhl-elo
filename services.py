@@ -12,4 +12,5 @@ def get_blank_seeding_dict() -> dict:
 
 def update_elo_dict(elo_dict: dict, team_name: str, updated_elo: float) -> dict:
     elo_dict.update({team_name: updated_elo})
+
     return elo_dict
