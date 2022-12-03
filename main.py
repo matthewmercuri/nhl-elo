@@ -1,4 +1,5 @@
 import data
+import elo
 from services import get_blank_seeding_dict
 
 """
@@ -12,19 +13,48 @@ run_elo_pipeline pseudo code
 3. return schedule df
 """
 
-ALLOWED_GAME_TYPES = ["R"]
+ALLOWED_GAME_TYPES = ["R", "P"]
 
 
-def process_game(game):
-    print(game)
+def process_game(game, team_elo_dict: dict):
+    if game["gameType"] not in ALLOWED_GAME_TYPES:
+        return game
+
+    home_name = game["homeTeam"]
+    away_name = game["awayTeam"]
+
+    prev_home_elo = team_elo_dict[home_name]
+    prev_away_elo = team_elo_dict[away_name]
+
+    if game["gameStatus"] == "Scheduled":
+        game["homePreGameElo"] = prev_home_elo
+        game["awayPreGameElo"] = prev_away_elo
+
+        home_win_probability, away_win_probability = elo.get_win_probabilities(
+            prev_home_elo, prev_away_elo, False, False
+        )
+
+        game["homeWinProbability"] = home_win_probability
+        game["awayWinProbability"] = away_win_probability
+
+    if game["gameStatus"] == "Final":
+        is_home_win = game["homeScore"] > game["awayScore"]
+
+        elo.get_updated_elos(
+            prev_home_elo,
+            prev_away_elo,
+            game["homeWinProbability"],
+            is_home_win,
+        )
+
     return game
 
 
 def run_elo_pipeline():
     team_elo_dict = get_blank_seeding_dict()
-    schedule_df = data.generate_games_df()
+    schedule_df = data.generate_games_df("20212022")
 
-    schedule_df.apply(process_game, axis=1)
+    schedule_df.apply(process_game, axis=1, args=(team_elo_dict))
 
     return
 
