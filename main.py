@@ -56,11 +56,9 @@ def run_elo_pipeline():
     team_elo_dict = get_blank_seeding_dict()
     schedule_df = data.generate_games_df("20212022")
 
-    df = schedule_df.apply(process_game, axis=1, team_elo_dict=team_elo_dict)
+    schedule_df = schedule_df.apply(process_game, axis=1, team_elo_dict=team_elo_dict)
 
-    df.to_csv("test.csv")
-
-    return
+    schedule_df.to_csv("test.csv")
 
 
 run_elo_pipeline()

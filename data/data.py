@@ -9,8 +9,8 @@ def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
     seasons_games_list = get_seasons_games(season)
     df = pd.DataFrame(seasons_games_list)
 
-    df["awayPreGameElo"] = 0
     df["homePreGameElo"] = 0
+    df["awayPreGameElo"] = 0
 
     df["homeWinProbability"] = 0
     df["awayWinProbability"] = 0
