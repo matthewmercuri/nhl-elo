@@ -36,6 +36,18 @@ def get_win_probabilities(
 
 
 def get_updated_elos(
-    prev_home_team_elo: float, prev_away_team_elo: float, home_b2b: bool, away_b2b: bool
+    prev_home_team_elo: float,
+    prev_away_team_elo: float,
+    home_win_probability: float,
+    is_home_win: bool,
 ):
-    return
+    if is_home_win:
+        home_win = 1
+    else:
+        home_win = 0
+
+    home_elo_change = K * (home_win - home_win_probability)
+    updated_home_elo = prev_home_team_elo + home_elo_change
+    updated_away_elo = prev_away_team_elo - home_elo_change
+
+    return updated_home_elo, updated_away_elo
