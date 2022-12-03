@@ -2,8 +2,11 @@ import pandas as pd
 from .nhlApi import get_seasons_games, get_team_names
 
 
-def generate_games_df() -> pd.DataFrame:
-    seasons_games_list = get_seasons_games()
+CURRENT_SEASON_STR: str = "20222023"
+
+
+def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
+    seasons_games_list = get_seasons_games(season)
     df = pd.DataFrame(seasons_games_list)
 
     df["awayPreGameElo"] = 0

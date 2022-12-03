@@ -8,7 +8,6 @@ https://gitlab.com/dword4/nhlapi
 BASE_NHL_API_URL: str = "https://statsapi.web.nhl.com/api/v1/"
 SCHDULE_API_URL: str = BASE_NHL_API_URL + "schedule"
 TEAMS_API_URL: str = BASE_NHL_API_URL + "teams"
-CURRENT_SEASON_STR: str = "20222023"
 
 
 def _clean_daily_game_data_list(daily_game_data_list: list[dict]) -> list[dict]:
@@ -31,7 +30,7 @@ def _clean_daily_game_data_list(daily_game_data_list: list[dict]) -> list[dict]:
     return cleaned_game_data_list
 
 
-def get_seasons_games(season_string: str = CURRENT_SEASON_STR) -> list[dict]:
+def get_seasons_games(season_string) -> list[dict]:
     params = {"season": season_string}
     r = requests.get(SCHDULE_API_URL, params)
     daily_game_data_list: list[dict] = r.json()["dates"]

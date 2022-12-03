@@ -1,4 +1,5 @@
 import data
+from services import get_blank_seeding_dict
 
 """
 run_elo_pipeline pseudo code
@@ -11,6 +12,21 @@ run_elo_pipeline pseudo code
 3. return schedule df
 """
 
+ALLOWED_GAME_TYPES = ["R"]
+
+
+def process_game(game):
+    print(game)
+    return game
+
 
 def run_elo_pipeline():
+    team_elo_dict = get_blank_seeding_dict()
+    schedule_df = data.generate_games_df()
+
+    schedule_df.apply(process_game, axis=1)
+
     return
+
+
+run_elo_pipeline()
