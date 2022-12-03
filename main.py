@@ -37,7 +37,7 @@ def process_game(game, team_elo_dict: dict):
     game["awayWinProbability"] = away_win_probability
 
     if game["gameStatus"] == "Final":
-        is_home_win = game["homeScore"] > game["awayScore"]
+        is_home_win: bool = game["homeScore"] > game["awayScore"]
 
         updated_home_elo, updated_away_elo = elo.get_updated_elos(
             prev_home_elo,
