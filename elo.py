@@ -27,7 +27,7 @@ def get_win_probabilities(
     ) + HOME_ADVANTAGE_ADJUSTMENT
     away_win_probability = 1 - home_win_probability
 
-    # adjustin for b2b advatage
+    # adjusting for b2b advatage
     b2b_advantage = get_b2b_advantage(home_b2b, away_b2b)
 
     if b2b_advantage == "home":
