@@ -1,6 +1,6 @@
 import data
 import elo
-from services import get_blank_seeding_dict
+from services import get_blank_seeding_dict, update_elo_dict
 
 """
 run_elo_pipeline pseudo code
@@ -26,26 +26,28 @@ def process_game(game, team_elo_dict: dict):
     prev_home_elo = team_elo_dict[home_name]
     prev_away_elo = team_elo_dict[away_name]
 
-    if game["gameStatus"] == "Scheduled":
-        game["homePreGameElo"] = prev_home_elo
-        game["awayPreGameElo"] = prev_away_elo
+    game["homePreGameElo"] = prev_home_elo
+    game["awayPreGameElo"] = prev_away_elo
 
-        home_win_probability, away_win_probability = elo.get_win_probabilities(
-            prev_home_elo, prev_away_elo, False, False
-        )
+    home_win_probability, away_win_probability = elo.get_win_probabilities(
+        prev_home_elo, prev_away_elo, False, False
+    )
 
-        game["homeWinProbability"] = home_win_probability
-        game["awayWinProbability"] = away_win_probability
+    game["homeWinProbability"] = home_win_probability
+    game["awayWinProbability"] = away_win_probability
 
     if game["gameStatus"] == "Final":
         is_home_win = game["homeScore"] > game["awayScore"]
 
-        elo.get_updated_elos(
+        updated_home_elo, updated_away_elo = elo.get_updated_elos(
             prev_home_elo,
             prev_away_elo,
-            game["homeWinProbability"],
+            home_win_probability,
             is_home_win,
         )
+
+        update_elo_dict(team_elo_dict, home_name, updated_home_elo)
+        update_elo_dict(team_elo_dict, away_name, updated_away_elo)
 
     return game
 
