@@ -3,14 +3,8 @@ import elo
 from services import get_blank_seeding_dict, update_elo_dict
 
 """
-run_elo_pipeline pseudo code
-1. get elo seeding dict
-2. iterate through schedule
-    a. reference elo dict for team elos
-    b. compute new elos/win probabilities
-    c. update schedule df
-    d. update elo_dict states
-3. return schedule df
+TODO:
+- use last played dict to implement b2b adjustment
 """
 
 ALLOWED_GAME_TYPES = ["R", "P"]
