@@ -1,8 +1,6 @@
 import pandas as pd
+from constants import CURRENT_SEASON_STR
 from .nhlApi import get_seasons_games, get_team_names
-
-
-CURRENT_SEASON_STR: str = "20222023"
 
 
 def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
