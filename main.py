@@ -1,7 +1,7 @@
 import data
 import elo
 from constants import BASE_ELO
-from services import get_blank_teams_dict, update_elo_dict
+from services import get_blank_teams_dict, update_teams_dict
 
 """
 TODO:
@@ -41,8 +41,8 @@ def process_game(game, team_elo_dict: dict):
             is_home_win,
         )
 
-        update_elo_dict(team_elo_dict, home_name, updated_home_elo)
-        update_elo_dict(team_elo_dict, away_name, updated_away_elo)
+        update_teams_dict(team_elo_dict, home_name, updated_home_elo)
+        update_teams_dict(team_elo_dict, away_name, updated_away_elo)
 
     return game
 

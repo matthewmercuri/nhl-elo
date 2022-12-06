@@ -1,4 +1,5 @@
 import data
+from typing import Any
 
 
 def get_blank_teams_dict(initial_value) -> dict:
@@ -6,8 +7,8 @@ def get_blank_teams_dict(initial_value) -> dict:
     return dict(zip(teams_list, [initial_value] * len(teams_list)))
 
 
-def update_elo_dict(elo_dict: dict, team_name: str, updated_elo: float) -> dict:
-    elo_dict.update({team_name: updated_elo})
+def update_teams_dict(elo_dict: dict, team_name: str, updated_value: Any) -> dict:
+    elo_dict.update({team_name: updated_value})
     return elo_dict
 
 
