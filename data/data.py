@@ -9,7 +9,8 @@ def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
     seasons_games_list = get_seasons_games(season)
     df = pd.DataFrame(seasons_games_list)
 
-    df["gameDate"] = pd.to_datetime(df["gameDate"], infer_datetime_format=True)
+    # INFO: may be able to just reassign to gameDate column
+    df["pandasGameDate"] = pd.to_datetime(df["gameDate"], infer_datetime_format=True)
 
     df["homePreGameElo"] = 0
     df["awayPreGameElo"] = 0
