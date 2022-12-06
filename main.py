@@ -1,14 +1,12 @@
 import data
 import elo
-from constants import BASE_ELO
+from constants import BASE_ELO, ALLOWED_GAME_TYPES
 from services import get_blank_teams_dict, update_teams_dict
 
 """
 TODO:
 - use last played dict to implement b2b adjustment
 """
-
-ALLOWED_GAME_TYPES = ["R", "P"]
 
 
 def process_game(game, team_elo_dict: dict):

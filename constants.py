@@ -1,1 +1,3 @@
 BASE_ELO = 1200
+
+ALLOWED_GAME_TYPES = ["R", "P"]
