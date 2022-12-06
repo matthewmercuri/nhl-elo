@@ -13,6 +13,7 @@ def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
     df["pandasGameDate"] = pd.to_datetime(df["gameDate"], infer_datetime_format=True)
 
     df.sort_values(by="pandasGameDate", ascending=True, inplace=True)
+    df.reset_index(inplace=True, drop=True)
 
     df["homePreGameElo"] = 0
     df["awayPreGameElo"] = 0
