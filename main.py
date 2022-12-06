@@ -1,6 +1,7 @@
 import data
 import elo
-from services import get_blank_seeding_dict, update_elo_dict
+from constants import BASE_ELO
+from services import get_blank_teams_dict, update_elo_dict
 
 """
 TODO:
@@ -47,7 +48,7 @@ def process_game(game, team_elo_dict: dict):
 
 
 def run_elo_pipeline():
-    team_elo_dict = get_blank_seeding_dict()
+    team_elo_dict = get_blank_teams_dict(BASE_ELO)
     schedule_df = data.generate_games_df("20212022")
 
     schedule_df = schedule_df.apply(process_game, axis=1, team_elo_dict=team_elo_dict)
