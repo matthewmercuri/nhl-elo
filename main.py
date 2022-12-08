@@ -49,11 +49,11 @@ def process_game(game, team_elo_dict: dict, last_played_dict: dict):
     return game
 
 
-def run_elo_pipeline():
+def run_elo_pipeline(season_string: str | None = None, save_csv: bool = False):
     team_elo_dict = get_blank_teams_dict(BASE_ELO)
     last_played_dict = get_blank_teams_dict(None)
 
-    schedule_df = data.generate_games_df("20212022")
+    schedule_df = data.generate_games_df(season_string)
 
     schedule_df = schedule_df.apply(
         process_game,
@@ -62,7 +62,8 @@ def run_elo_pipeline():
         last_played_dict=last_played_dict,
     )
 
-    schedule_df.to_csv("test.csv")
+    if save_csv:
+        schedule_df.to_csv("test.csv")
 
 
-run_elo_pipeline()
+run_elo_pipeline(save_csv=True)
