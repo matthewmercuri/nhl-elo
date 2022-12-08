@@ -69,6 +69,3 @@ def run_elo_pipeline(
         schedule_df.to_csv("test.csv")
 
     return schedule_df, team_elo_dict
-
-
-run_elo_pipeline(save_csv=True)
