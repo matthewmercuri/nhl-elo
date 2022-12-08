@@ -3,11 +3,6 @@ import elo
 from constants import BASE_ELO, ALLOWED_GAME_TYPES
 from services import get_blank_teams_dict, update_teams_dict, has_played_yesterday
 
-"""
-TODO:
-- use last played dict to implement b2b adjustment
-"""
-
 
 def process_game(game, team_elo_dict: dict, last_played_dict: dict):
     if game["gameType"] not in ALLOWED_GAME_TYPES:
