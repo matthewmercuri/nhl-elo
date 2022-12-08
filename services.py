@@ -12,8 +12,6 @@ def update_teams_dict(elo_dict: dict, team_name: str, updated_value: Any) -> dic
     return elo_dict
 
 
-def update_last_played_dict(
-    last_played_dict: dict, team_name: str, game_date: str
-) -> dict:
-    last_played_dict.update({team_name: game_date})
-    return last_played_dict
+# TODO: adjust type of current_game_date
+def has_played_yesterday(last_played_dict: dict, current_game_date: Any) -> bool:
+    return False
