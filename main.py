@@ -1,5 +1,6 @@
 import data
 import elo
+import pandas as pd
 from constants import BASE_ELO, ALLOWED_GAME_TYPES, CURRENT_SEASON_STR
 from services import get_blank_teams_dict, update_teams_dict, has_played_yesterday
 
@@ -49,7 +50,9 @@ def process_game(game, team_elo_dict: dict, last_played_dict: dict):
     return game
 
 
-def run_elo_pipeline(season_string: str = CURRENT_SEASON_STR, save_csv: bool = False):
+def run_elo_pipeline(
+    season_string: str = CURRENT_SEASON_STR, save_csv: bool = False
+) -> pd.DataFrame:
     team_elo_dict = get_blank_teams_dict(BASE_ELO)
     last_played_dict = get_blank_teams_dict(None)
 
@@ -64,6 +67,8 @@ def run_elo_pipeline(season_string: str = CURRENT_SEASON_STR, save_csv: bool = F
 
     if save_csv:
         schedule_df.to_csv("test.csv")
+
+    return schedule_df
 
 
 run_elo_pipeline(save_csv=True)
