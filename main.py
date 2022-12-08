@@ -52,7 +52,7 @@ def process_game(game, team_elo_dict: dict, last_played_dict: dict):
 
 def run_elo_pipeline(
     season_string: str = CURRENT_SEASON_STR, save_csv: bool = False
-) -> pd.DataFrame:
+) -> tuple[pd.DataFrame, dict]:
     team_elo_dict = get_blank_teams_dict(BASE_ELO)
     last_played_dict = get_blank_teams_dict(None)
 
@@ -68,7 +68,7 @@ def run_elo_pipeline(
     if save_csv:
         schedule_df.to_csv("test.csv")
 
-    return schedule_df
+    return schedule_df, team_elo_dict
 
 
 run_elo_pipeline(save_csv=True)
