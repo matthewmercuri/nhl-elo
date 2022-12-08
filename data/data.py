@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from constants import CURRENT_SEASON_STR
 from .nhlApi import get_seasons_games, get_team_names
@@ -18,6 +19,9 @@ def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
 
     df["homePreGameElo"] = 0
     df["awayPreGameElo"] = 0
+
+    df["isHomeB2B"] = np.nan
+    df["isAwayB2B"] = np.nan
 
     df["homeWinProbability"] = 0
     df["awayWinProbability"] = 0

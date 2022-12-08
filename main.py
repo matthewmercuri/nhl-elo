@@ -25,6 +25,8 @@ def process_game(game, team_elo_dict: dict, last_played_dict: dict):
     game_date = game["pandasGameDate"]
     is_home_b2b = has_played_yesterday(last_played_dict, home_name, game_date)
     is_away_b2b = has_played_yesterday(last_played_dict, away_name, game_date)
+    game["isHomeB2B"] = is_home_b2b
+    game["isAwayB2B"] = is_away_b2b
 
     home_win_probability, away_win_probability = elo.get_win_probabilities(
         prev_home_elo, prev_away_elo, is_home_b2b, is_away_b2b
