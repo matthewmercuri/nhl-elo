@@ -7,8 +7,11 @@ def generate_games_df(season: str = CURRENT_SEASON_STR) -> pd.DataFrame:
     seasons_games_list = get_seasons_games(season)
     df = pd.DataFrame(seasons_games_list)
 
-    # INFO: may be able to just reassign to gameDate column
+    # INFO:
+    # - may be able to just reassign to gameDate column
+    # - pythonGameDate seems to be the same as pandasGameDate
     df["pandasGameDate"] = pd.to_datetime(df["gameDate"], infer_datetime_format=True)
+    df["pythonGameDate"] = df["pandasGameDate"].dt.to_pydatetime()
 
     df.sort_values(by="pandasGameDate", ascending=True, inplace=True)
     df.reset_index(inplace=True, drop=True)
