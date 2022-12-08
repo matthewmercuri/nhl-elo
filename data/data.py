@@ -1,11 +1,10 @@
 import numpy as np
 import pandas as pd
-from constants import CURRENT_SEASON_STR
 from .nhlApi import get_seasons_games, get_team_names
 
 
-def generate_games_df(season: str | None = CURRENT_SEASON_STR) -> pd.DataFrame:
-    seasons_games_list = get_seasons_games(season)
+def generate_games_df(season_string: str) -> pd.DataFrame:
+    seasons_games_list = get_seasons_games(season_string)
     df = pd.DataFrame(seasons_games_list)
 
     # INFO:
